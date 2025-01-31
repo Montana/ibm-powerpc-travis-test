@@ -3,7 +3,7 @@ language: python
 python:
   - "3.10"
 
-group: greenzone
+group: edge
 arch: ppc64le
 
 env:
