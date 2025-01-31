@@ -1,7 +1,48 @@
 dist: jammy
 language: python
 python:
-  - "3.10" 
+  - "3.10"
+
 group: greenzone
 arch: ppc64le
-script: chmod +x && python3 power_check.py
+
+env:
+  global:
+    - SCRIPT_NAME="power_check.py"
+    - LOG_FILE="build.log"
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+before_install:
+  - echo "Starting Travis CI build..." | tee -a $LOG_FILE
+  - python3 --version | tee -a $LOG_FILE
+  - pip --version | tee -a $LOG_FILE
+  - sudo apt-get update && sudo apt-get install -y curl jq
+  - chmod +x power_check.py 
+
+install:
+  - echo "Installing dependencies..." | tee -a $LOG_FILE
+  - pip install --upgrade pip
+  - pip install -r requirements.txt || echo "No dependencies found" | tee -a $LOG_FILE
+
+before_script:
+  - echo "Running pre-execution checks..." | tee -a $LOG_FILE
+  - ls -lah | tee -a $LOG_FILE
+  - test -f $SCRIPT_NAME && echo "$SCRIPT_NAME exists!" || exit 1
+
+script:
+  - echo "Executing script..." | tee -a $LOG_FILE
+  - python3 python_check.py | tee -a $LOG_FILE
+
+after_script:
+  - echo "Build completed!" | tee -a $LOG_FILE
+  - cat $LOG_FILE
+
+notifications:
+  email:
+    recipients:
+      - your-email@example.com
+    on_success: always
+    on_failure: always
