@@ -1,4 +1,4 @@
 dist: jammy
 group: greenzone
 arch: ppc64le
-script: echo "Hello."
+script: chmod +x && python3 power_check.py
