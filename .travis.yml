@@ -1,4 +1,3 @@
 dist: jammy
 arch: ppc64le
-language: generic
 script: echo "Hello."
