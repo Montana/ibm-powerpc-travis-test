@@ -3,7 +3,6 @@ language: python
 python:
   - "3.10"
 
-group: edge
 arch: ppc64le
 
 env:
