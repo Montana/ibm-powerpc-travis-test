@@ -1,5 +1,7 @@
 dist: jammy
 language: python
+python:
+  - "3.10" 
 group: greenzone
 arch: ppc64le
 script: chmod +x && python3 power_check.py
