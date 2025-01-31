@@ -1,4 +1,4 @@
 dist: jammy
+group: greenzone
 arch: ppc64le
 script: echo "Hello."
-group: greenzone
