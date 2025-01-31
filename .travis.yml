@@ -39,10 +39,3 @@ script:
 after_script:
   - echo "Build completed!" | tee -a $LOG_FILE
   - cat $LOG_FILE
-
-notifications:
-  email:
-    recipients:
-      - your-email@example.com
-    on_success: always
-    on_failure: always
